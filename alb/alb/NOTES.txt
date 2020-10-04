@@ -1,0 +1,56 @@
+
+Application Load Balancer(alb) Layer7(Application Layer)
+    8080, 443 --> http, https
+    Target Group
+        example.com/image --> Server 1 (/image)
+        example.com/homefolder --> Server 2 (/homefolder)
+
+Network Load Blancer(NLB) (Layer4 --> TCP Layer)
+    8080 --> tcp
+
+
+Target Group    
+    Name: my-test-tg 
+    Target Type --> Instance * 
+                    IP
+                    Lmabda
+    Protocol --> HTTP 
+    Port --> 80
+    VPC --> xxxxxx
+
+    Health Check --> apache --> /var/www/html/test.html 
+        curl http://<instance>?test.html 
+        Protocol -->http 
+    Advance health check option
+        Healthy: 5            
+        Unhealthy: 2   (2 unhealthy consecutive times)
+            Interval: 30 * 5  (30 sec every 5) 
+        Success Code:
+
+
+
+    FYI: can incorporate ACM  (free )
+
+
+Application Load Balancer
+    Load Balancer
+        Name --> my-test-alb 
+        Scheme --> Internet facing *  e.g. Apache --> Tomcat(Server 1 --> Server2 )
+                   Internal
+
+        Ip address type:    ipv4  *
+                            dualstack(ipv4 + ipv6)
+
+        Listener --> Load Balancer Protocol /Port
+
+        Availability Zones
+            VPC --> xxxxxx
+            Availabilty Zone: select at least 2
+
+
+    Security Group
+
+
+    Routing 
+    
+    Register Targets

@@ -13,7 +13,6 @@ resource "aws_vpc" "main" {
   }
 }
 
-
 # Public Subnet
 resource "aws_subnet" "public_subnet" {
   count                   = 2
@@ -25,4 +24,18 @@ resource "aws_subnet" "public_subnet" {
   tags = {
     Name = "my-test-public-subnet.${count.index + 1}"
   }
+}
+# Creating Internet Gateway
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "my-test-igw"
+  }
+}
+
+# Security Group Creation
+resource "aws_security_group" "test_sg" {
+  name   = "my-test-sg"
+  vpc_id = aws_vpc.main.id
 }

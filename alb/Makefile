@@ -1,5 +1,5 @@
 format:
-	terraform12 format
+	terraform12 fmt
 	
 init:
 	terraform12 init 

@@ -1,5 +1,8 @@
 variable "vpc_id" {}
 
-variable "subnet1" {}
+variable "instance1_id" {}
+variable "instance2_id" {}
 
-variable "subnet2" {}
+# variable "subnet1" {}
+
+# variable "subnet2" {}
